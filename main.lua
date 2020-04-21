@@ -1,6 +1,8 @@
 function love.draw()
  love.graphics.setColor(0, 0.66, 0.66, 1)
  love.graphics.rectangle("fill", 300, 300, 50, 30)
+ love.graphics.print("SCORE:", 420, 150, 0, 4, 4)
+ love.graphics.print(core.score, 420, 200, 0, 4, 4)
 end
 local core = {}
 local key = {}
@@ -35,9 +37,11 @@ core["touch"] = -1
 core["mem"] = 0
 --Garbage collector cycles
 key.setting()
+core["score"] = 0
+love.keyboard.setKeyRepeat(false)
 end
 function key.appendBuffer()
-if (match.random(1000)<25)then
+if (match.random(1000) < 25) then
    --Append number of items.
    core.touch = core.touch + 1
    --Create object depending on key config.
@@ -68,14 +72,6 @@ function love.update(dt)
    key.appendBuffer()
    key.scrolling()
    memoryCleaner()
-end
-function love.load()
-core["score"] = 0
-love.keyboard.setKeyRepeat(false)
-end
-function love.draw()
-    love.graphics.print("SCORE:", 420, 150, 0, 4, 4)
-    love.graphics.print(core.score, 420, 200, 0, 4, 4)
 end
 function key.checkClicked(x)
          for i = 0, core.touch do
