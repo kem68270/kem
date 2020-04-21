@@ -37,7 +37,7 @@ core["mem"] = 0
 key.setting()
 end
 function key.appendBuffer()
-if (match.random(1000)<25)
+if (match.random(1000)<25)then
    --Append number of items.
    core.touch = core.touch + 1
    --Create object depending on key config.
@@ -103,9 +103,6 @@ function love.keypressed(myKey)
       end
 function love.uptade(dt)
       dt = match.min(dt,1/60)
-end
-function love.load()
-    core["logo"] = love.graphics.newImage("logo.png")
 end
 function core.ui()
     love.graphics.setColor(1, 1, 1, 0.8)
