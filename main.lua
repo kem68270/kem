@@ -69,3 +69,48 @@ function love.update(dt)
    key.scrolling()
    memoryCleaner()
 end
+function love.load()
+core["score"] = 0
+love.keyboard.setKeyRepeat(false)
+end
+function love.draw()
+    love.graphics.print("SCORE:", 420, 150, 0, 4, 4)
+    love.graphics.print(core.score, 420, 200, 0, 4, 4)
+end
+function key.checkClicked(x)
+         for i = 0, core.touch do
+             if (buf[i] ~= nil and buf[i].x == x and buff[i].y > 500 and buf[i].y < 550) then
+                 buf[i].y = nil
+                 buf[i].x = nil
+                 buf[i] = nil
+                 return (1)
+             end
+         end
+         return (0)
+end
+function love.keypressed(myKey)
+      if myKey == "q" and key.checkClicked(100) == 1 then
+          core.score = core.score + 10
+      end
+      if myKey == "s" and key.checkClicked(175) == 1 then
+          core.score = core.score + 10
+      end
+      if myKey == "d" and key.checkClicked(250) == 1 then
+            core.score = core.score + 10
+      end
+      if myKey == "f" and key.checkClicked(325) == 1 then
+            core.score = core.score + 10
+      end
+function love.uptade(dt)
+      dt = match.min(dt,1/60)
+end
+function love.load()
+    core["logo"] = love.graphics.newImage("logo.png")
+end
+function core.ui()
+    love.graphics.setColor(1, 1, 1, 0.8)
+    love.graphics.rectangle("fill", 95, 0, 60, 600)
+    love.graphics.rectangle("fill", 170, 0, 60, 600)
+    love.graphics.rectangle("fill", 245, 0, 60, 600)
+    love.graphics.rectangle("fill", 320, 0, 60, 600)
+end
