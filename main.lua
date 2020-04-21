@@ -48,6 +48,24 @@ end
 function key.scrolling()
   for i = 0, core.touch do
   --Scrolling objects
-  if (buf[i] ~= nill) then
+  if (buf[i] ~= nil) then
      buf[i].y = buf[i].y +10
   end
+  -- Reset objects
+  if (buf[i] ~= nil and buf[i].y == 600) then
+      buf[i].y = nil buf[i].x = nil buf[i] buf = nil
+   end
+  end
+end
+function memoryCleaner()
+     --Clean memory
+     core.mem = core.mem + 1
+     if (core.mem == 500) then
+         collectgarbage()
+     end
+  end
+function love.update(dt)
+   key.appendBuffer()
+   key.scrolling()
+   memoryCleaner()
+end
